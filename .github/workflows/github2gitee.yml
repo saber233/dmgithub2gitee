@@ -1,7 +1,11 @@
 # 通过 Github action， 在仓库的每一次 commit 后自动同步到 Gitee 上
 name: github2gitee
-on: [push,workflow_dispatch]
-
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    # 定时任务，在每天的N点执行任务(国际标准时间, 北京时间+8)
+    - cron: "0 22 * * *"
 jobs:
   repo-sync:
     env:
@@ -19,17 +23,17 @@ jobs:
         if: env.dst_key && env.dst_token && env.gitee_user
         with:
           # 必选，需要同步的 Github 用户（源）
-          src: 'github/${{ github.repository_owner }}'
+          src: "github/${{ github.repository_owner }}"
           # 必选，需要同步到的 Gitee 用户（目的）
-          dst: 'gitee/${{ secrets.GITEE_USER }}'
+          dst: "gitee/${{ secrets.GITEE_USER }}"
           # 必选，Gitee公钥对应的私钥，https://gitee.com/profile/sshkeys
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           # 必选，Gitee对应的用于创建仓库的token，https://gitee.com/profile/personal_access_tokens
-          dst_token:  ${{ secrets.GITEE_TOKEN }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
           # 如果是组织，指定组织即可，默认为用户 user
           # account_type: org
           # 直接取当前项目的仓库名
-          static_list: '${{ github.event.repository.name }},dmlua,dmtimer'
+          static_list: "${{ github.event.repository.name }},dmlua,dmtimer"
           # 还有黑、白名单，静态名单机制，可以用于更新某些指定库
           # static_list: 'repo_name,repo_name2'
           # black_list: 'repo_name,repo_name2'
