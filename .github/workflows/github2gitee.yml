@@ -9,7 +9,6 @@ on:
 jobs:
   repo-sync:
     env:
-      repo_name: ${{ github.event.repository.name }}
       dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
       dst_token: ${{ secrets.GITEE_TOKEN }}
       gitee_user: ${{ secrets.GITEE_USER }}
@@ -34,7 +33,7 @@ jobs:
           # 如果是组织，指定组织即可，默认为用户 user
           # account_type: org
           # 直接取当前项目的仓库名
-          static_list: "env.repo_name,dmlua,dmtimer"
+          static_list: "${{ github.event.repository.name }},dmlua,dmtimer"
           # 还有黑、白名单，静态名单机制，可以用于更新某些指定库
           # static_list: 'repo_name,repo_name2'
           # black_list: 'repo_name,repo_name2'
