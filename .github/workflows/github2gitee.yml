@@ -1,7 +1,7 @@
 # 通过 Github action， 在仓库的每一次 commit 后自动同步到 Gitee 上
 name: github2gitee
 on:
-  push:
+  #push:
   workflow_dispatch:
   schedule:
     # 定时任务，在每天的N点执行任务(国际标准时间, 北京时间+8)
