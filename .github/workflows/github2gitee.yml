@@ -14,14 +14,11 @@ jobs:
       gitee_user: ${{ secrets.GITEE_USER }}
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+        uses: Yikun/hub-mirror-action@master
+        uses: Sibz/github-status-action@v1
 
       - name: sync github -> gitee
-        uses: Yikun/hub-mirror-action@master
-        
         if: env.dst_key && env.dst_token && env.gitee_user
         with:
           # 必选，需要同步的 Github 用户（源）
@@ -40,9 +37,8 @@ jobs:
           # static_list: 'repo_name,repo_name2'
           # black_list: 'repo_name,repo_name2'
           # white_list: 'repo_name,repo_name2'
-          
+
       - name: Status
-        uses: Sibz/github-status-action@v1
         with:
           authToken: ${{secrets.GITHUB_TOKEN}}
           context: 'Set Status'
