@@ -1,6 +1,6 @@
 # dmgithub2gitee
 
-## Build status
+## auto sync status
 | [github2gitee][github2gitee-link] | 
 | :---------------: | 
 | ![github2gitee-badge]      | 
