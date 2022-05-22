@@ -38,3 +38,10 @@ jobs:
           # static_list: 'repo_name,repo_name2'
           # black_list: 'repo_name,repo_name2'
           # white_list: 'repo_name,repo_name2'
+      - name: Status
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Set Status'
+          description: 'Passed'
+          state: 'success'
