@@ -14,6 +14,7 @@ jobs:
       gitee_user: ${{ secrets.GITEE_USER }}
     runs-on: ubuntu-latest
     steps:
+      - name: dep
         uses: actions/checkout@v2
         uses: Yikun/hub-mirror-action@master
         uses: Sibz/github-status-action@v1
