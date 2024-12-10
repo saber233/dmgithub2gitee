@@ -41,7 +41,7 @@ jobs:
           # white_list: 'repo_name,repo_name2'
 
       - name: Status
-        uses: Sibz/github-status-action@v1
+        uses: brinkqiang/github-status-action@v2
         with:
           authToken: ${{secrets.GITHUB_TOKEN}}
           context: 'Set Status'
