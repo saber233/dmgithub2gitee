@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   schedule:
     # 定时任务，在每天的N点执行任务(国际标准时间, 北京时间+8)
-    - cron: "0 22 * * *"
+    - cron: "0 20 * * *"
 jobs:
   repo-sync:
     env:
@@ -33,7 +33,7 @@ jobs:
           # 如果是组织，指定组织即可，默认为用户 user
           # account_type: org
           # 直接取当前项目的仓库名
-          static_list: "dmlua,dmtimer,luapb,dmsolpp"
+          static_list: "github-host,chongli-notion-backup,zhihu-hot-questions"
           # "${{github.event.repository.name}}"
           # 还有黑、白名单，静态名单机制，可以用于更新某些指定库
           # static_list: 'repo_name,repo_name2'
@@ -43,7 +43,7 @@ jobs:
       - name: Status
         uses: brinkqiang/github-status-action@v2
         with:
-          authToken: ${{secrets.GITHUB_TOKEN}}
+          authToken: ${{secrets.MY_GITHUB_TOKEN}}
           context: 'Set Status'
           description: 'Passed'
           state: 'success'
